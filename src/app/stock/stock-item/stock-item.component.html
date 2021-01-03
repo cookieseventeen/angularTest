@@ -1,7 +1,9 @@
-<div class="stock-container">
-  <div class="name">
-    <h3>{{stock.name}}</h3> - <h4>{{stock.code}}</h4>
+<div class="wrap">
+  <div *ngFor="let stock of stocks; odd as isOdd ; index as i; trackBy: trackStockByCode" class="stock-container">
+    <div class="name" [class.even-item]="isOdd">
+      <h3>{{stock.name}}</h3> - <h4>{{stock.code}}</h4>
+    </div>
+    <div class="price" [ngStyle]="ngStyleTest">$ {{stock.price}}</div>
+    <button (click)="toggleFavorite($event,i)" [disabled]="stock.favorite">Add to favorite</button>
   </div>
-  <div class="price" [class]="stock.isPositiveChange ? 'positive':'negative'">$ {{stock.price}}</div>
-  <button (click)="toggleFavorite($event)" [disabled]>Add to favorite</button>
 </div>
